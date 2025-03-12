@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SprintSoul</title>
+    <base href="">
+    <link href="/SS.png" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+   <style>    
+        body {
+            margin: 0;
+            font-family: "Oswald", sans-serif;
+            background: #f0f0f0;
+        }
+        header {
+            z-index: 10;
+            display: grid;
+            position: fixed;
+            width: 100%;
+            height: 10%;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 100px;
+            background: #ffffff;
+            color: #fff;
+            text-align: center;
+        }
+       
+        header a {
+            display: flex;
+            font-weight: 600;
+            color: #000000;
+            text-decoration: none;
+            font-size: 1.5em;
+            margin: 0 20px;
+            line-height: 70px;  
+        }
+        .bar{
+            display: none;
+        }
+
+        .bar i{
+            color: rgb(0, 0, 0);
+            font-size: 30px;
+            font-weight: 700;
+            position: absolute;
+            left: 16px;
+            line-height: 40px;
+            cursor: pointer;
+            transition: all 0.3s linear;
+        }
+        #check{
+            display: none;
+        }
+
+        .nav{
+            position: fixed;
+            right: -7000px;
+            height: 100vh;
+            width: 100vh;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s linear;
+        }
+
+        .nav .cross i{
+            color: grey;
+            font-size: 20px;
+            line-height: 40px;
+            position: absolute;
+            left: 220px;
+            opacity: 0;
+            cursor: pointer;
+            transition: all 0.3s linear;
+        }
+
+        #check:checked .nav{
+            position: fixed;
+            right: 0;
+            height: 100vh;
+            width: 100vh;   
+        }
+
+        header ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        header div{
+            display: flex;
+            justify-content: end;
+        }
+
+        .hero{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            background-color: #000000;
+            
+        }
+
+        .hero video {
+            padding: 0 20px;
+            height: 100%;    
+        }
+    
+        .hero h1 {
+            font-family: "Oswald", sans-serif;
+           position: absolute;
+           color: white;
+           opacity: 0.8;
+           font-size: 4em;
+           align-items: center;
+           justify-content: center;
+        }
+
+        .shopnow {
+            display: flex;
+            background: #000000;
+            padding: 10px 0;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding: 20px;
+            margin-left: 90px;
+        }
+
+        .p1{
+            font-size: 1.5em;
+            color: #ff0000;
+            margin: 20px 0;
+            background-color: antiquewhite;
+            width: 120px;
+            border-radius: 5px;
+            padding-left: 4px;
+        }
+
+        .p2{
+            font-size: 1.5em;
+            font-weight: 300;
+            color: #ffffff;
+            margin: 20px 0;
+        }
+        
+        .content h1 {
+            font-size: 3em;
+            color: #ffffff;
+            margin: 20px 0;
+        }
+
+        .sp1{
+            color: #ff0000;
+        }
+
+        .btn {
+            background: #ff0000;
+            color: #ffffff;
+            height: 30px;
+            width: 80px;
+            padding: 10px 20px;
+            font-size: 20px;
+            font-weight: 500;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #ff0000;
+            color: #ffffff;
+            transform: scale(1.1);
+            transition: 0.5s;
+        }
+
+        .content2 {
+            flex: 1;
+            padding: 20px;
+            margin-right: 90px;
+        }
+
+        .box {
+            display: flex;
+            width: 600px;
+            height: 350px;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            margin: 20px 0;    
+        }
+
+        .box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgb(255, 0, 0);
+            transition: 0.5s;
+        }
+
+        .box img:hover{
+            transform: scale(1.1);
+        }
+        
+        .products {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+            background-color: #ff0000;
+            color: #f0f0f0;
+        }
+
+        .products h1 {
+            padding-top: 10px;
+            font-size: 80px;
+            font-weight: 800;
+            margin: 0 20px ;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .card{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 20px;
+            background: #f34949;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgb(255, 0, 0);
+            transition: 0.5s;
+        }
+
+        .card img {
+            width: 250px;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgb(255, 0, 0);
+            transition: 0.5s;
+        }
+
+        .card .info{
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            padding: 20px;
+            margin: 20px;
+            background: #f34949;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgb(255, 0, 0);
+            transition: 0.5s;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+            transition: 0.5s;
+        }
+
+        .offer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+            background: rgb(209, 209, 3);
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .About{
+            height: 400px;
+            background: #000;
+            padding: 30px 30px;
+
+        }
+
+        .aboutbox{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;   
+        }
+
+        .aboutbox h1{
+            color: #fff;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .aboutbox p{
+            text-align: center;
+            font-weight: 700;
+            color: #f0f0f0;
+            font-family: 'Segoe UI';
+        }
+ 
+        footer {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: center;
+            padding: 10px;
+            background: #1e2124;
+            color: #fff;
+        }
+
+        footer div {
+            display: flex;
+            margin: 10px 0;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer div p{
+            margin: 0;
+        }
+
+        footer div a:hover {
+            color: #ff0000;
+        }
+
+        @media screen and (max-width: 1024px) {
+           
+            header ul{
+                display: none;
+            }
+            header button {
+
+                display: none;
+            }
+            header div {
+                display: none;
+            }
+            header {
+                grid-template-columns: 1fr 1fr;
+            }
+           
+            header button {
+                display: block;
+                font-size: 1.5em;
+                color: #000000;
+                margin: 0 20px;
+                line-height: 70px;
+            }
+            .bar{
+                display: flex;    
+            }
+
+            .bar label{
+
+                position: absolute;
+                right: 50px;
+                color: white;
+                text-decoration: none;
+                font-size: 22px;
+                font-weight: 500;
+                line-height: 40px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .shopnow{
+                width: 100%;
+            }
+            .box {
+                width: 100%;
+                height: 300px;
+            }
+            .box img {
+                width: 100%;
+                height: 100%;
+            }
+            .products h1 {
+                font-size: 40px;
+            }
+            .cards {
+                padding: 10px;
+            }
+            .card {
+                margin: 10px;
+            }
+            .card img {
+                width: 100%;
+                height: 200px;
+            }
+            .offer h1 {
+                font-size: 20px;
+            }
+            footer {
+                flex-direction: row;
+            }
+            footer div {
+                margin: 10px 0;
+            }
+        }
+
+        header ul a:hover{
+            transform: scale(1.1);
+        }
+
+        .login:hover{
+            transform: scale(1.1);
+        }
+
+        .signup:hover{
+            transform: scale(1.1);
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+       <a href="#">SprintSoul.co</a>
+
+       <ul >
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#footer">Contact</a></li>          
+       </ul>
+
+       <div> 
+            <a href="#"class="login">Login</a>
+            <a href="#" class="signup">Sign Up</a>
+       </div>
+
+       <input type="checkbox" id="check" />
+       <div class="bar">
+            <label for="check" style="color: white">
+                <i class="fa-solid fa-bars"></i>
+            </label>
+        </div>
+
+        <div class="nav">
+            <div class="cross">
+                <label for="check" style="color: grey">
+                  <i class="fa-solid fa-xmark"></i>
+                </label>
+            </div>
+            <div>
+                <ul >
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    
+               </ul>
+    
+               <div>
+                    <a href="#">Login</a>
+                    <a href="#">Sign Up</a>
+               </div>
+        
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        
+        <video autoplay loop muted plays-inline src="Untitled design.mp4" ></video>
+        <h1><a href="">SprintSoul.co</a></h1>
+        
+    </section>
+
+    <section class="shopnow">
+        <div class="content">
+            <p class="p1">New Arrivals</p>
+            <h1>
+                <span class="sp1">New Sneakers!</span>
+                <span>are <br> here Now!</span>
+            </h1>
+            <p class="p2">Presenting the best sneakers from around the world</p>
+            
+            <div>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+        <div class="content2">
+            <div class="box">
+                <img src="shoes/pexels-mnzoutfits-1598505.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="shopnow">
+        <div class="content2">
+            <div class="box">
+                <img src="shoes/pexels-jddaniel-2385477.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="content">
+            <p class="p1">New Arrivals</p>
+            <h1>
+                <span class="sp1">New Sneakers!</span>
+                <span>are <br> here Now!</span>
+            </h1>
+            <p class="p2">Presenting the best sneakers from around the world</p>
+            
+            <div>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        </div>
+        
+
+    </section>
+
+    <section class="shopnow">
+        <div class="content">
+            <p class="p1">New Arrivals</p>
+            <h1>
+                <span class="sp1">New Sneakers!</span>
+                <span>are <br> here Now!</span>
+            </h1>
+            <p class="p2">Presenting the best sneakers from around the world</p>
+            
+            <div>
+                <a href="#" class="btn">Shop Now</a>
+            </div>
+        
+        </div>
+        <div class="content2">
+            <div class="box">
+                <img src="shoes/pexels-craytive-1478442.jpg" alt="">
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="shop">
+        <h1>TOP TRENDING</h1>
+        <div class="cards">
+            <div class="card">
+                <div class="img">
+                    <img src="shoes/JORDAN+ZION+4+PF.png" alt="">
+                </div>
+                <div class="inf0">
+                    <h2>JORDAN ZION 4 PF</h2>   
+                    <p>Baskestball Shoes</p>
+                    <p>MRP: <i class="fa-solid fa-indian-rupee-sign" style="color: #ffffff;"></i> 12 795.00</p>
+                </div>
+                <div ><a href="#" class="btn">Buy Now</a></div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="shoes/AIR+FORCE+1+'07+FRESH.png" alt="">
+                </div>
+                <div class="inf0">
+                    <h2>AIR FORCE 1 07 FRESH</h2>   
+                    <p>Men's Shoes</p>
+                    <p>MRP: <i class="fa-solid fa-indian-rupee-sign" style="color: #ffffff;"></i> 11295.00</p>
+                </div>
+                <div ><a href="#" class="btn">Buy Now</a></div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="shoes/AIR+JORDAN+1+MID.png" alt="">
+                </div>
+                <div class="inf0">
+                    <h2>AIR FORCE 1 MID</h2>   
+                    <p>Men's Shoes</p>
+                    <p>MRP: <i class="fa-solid fa-indian-rupee-sign" style="color: #ffffff;"></i> 11 495.00</p>
+                </div>
+                <div ><a href="#" class="btn">Buy Now</a></div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="shoes/JORDAN+NU+RETRO+1+G.png" alt="">
+                </div>
+                <div class="inf0">
+                    <h2>JORDAN NU RETRO 1 G</h2>   
+                    <p>Golf Shoes</p>
+                    <p>MRP: <i class="fa-solid fa-indian-rupee-sign" style="color: #ffffff;"></i> 13 995.00</p>
+                </div>
+                <div ><a href="#" class="btn">Buy Now</a></div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="shoes/NIKE+DUNK+LOW+RETRO.png" alt="">
+                </div>
+                <div class="inf0">
+                    <h2>NIKE DUNK LOW RETRO</h2>   
+                    <p>Men's Shoes</p>
+                    <p>MRP: <i class="fa-solid fa-indian-rupee-sign" style="color: #ffffff;"></i> 10 257.00</p>
+                </div>
+                <div ><a href="#" class="btn">Buy Now</a></div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="shoes/NIKE+VOMERO+18.png" alt="">
+                </div>
+                <div class="inf0">
+                    <h2>NIKE VOMERO 18</h2>   
+                    <p>Men's Road Running Shoes</p>
+                    <p>MRP: <i class="fa-solid fa-indian-rupee-sign" style="color: #ffffff;"></i> 13 295.00</p>
+                </div>
+                <div ><a href="#" class="btn">Buy Now</a></div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="shoes/VAPOR+16+CLUB+FG_MG.png" alt="">
+                </div>
+                <div class="inf0">
+                    <h2>VAPOR 16 CLUB FG MG</h2>   
+                    <p>Men's Football Shoes</p>
+                    <p>MRP: <i class="fa-solid fa-indian-rupee-sign" style="color: #ffffff;"></i> 4 495.00</p>
+                </div>
+                <div ><a href="#" class="btn">Buy Now</a></div>
+            </div>
+            <div class="card">
+                <div class="img">
+                    <img src="shoes/NIKE+ZOOMX+VAPORFLY+3.png" alt="">
+                </div>
+                <div class="inf0">
+                    <h2>Nike Vaporfly 3</h2>   
+                    <p>Men's Road Running Shoes</p>
+                    <p>MRP: <i class="fa-solid fa-indian-rupee-sign" style="color: #ffffff;"></i> 20 695.00</p>
+                </div>
+                <div ><a href="#" class="btn">Buy Now</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="offer">
+        <h1>JOIN SPRINTSOUL AND GET 10% OFF</h1>
+    </section>
+
+    <section class="About" id="about">
+        <div class="aboutbox">
+            <h1>About</h1>
+            <p>
+                we are driven by a passion for innovation and speed. Our mission is to create dynamic solutions that empower individuals and businesses to achieve their goals with agility and confidence. Whether it's crafting cutting-edge technology, building impactful products, or designing seamless user experiences, we strive to blend creativity with efficiency. SprintSoul is more than just a name — it’s a mindset that pushes us to move fast, think big, and deliver excellence in everything we do.
+            </p>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div>
+            <a href="#">Privacy Policys</a>|
+            <a href="#">Terms & Conditions</a>|
+            <a href="#">Cookies</a>
+        </div>
+        <div>
+            <p>@nishant_pawade</p>
+        </div>
+        <div>
+            <p>&copy; 2025 SprintSoul.co ALL RIGHTS RESERVED</p>
+        </div>
+        
+    </footer>
+</body>
+</html>
