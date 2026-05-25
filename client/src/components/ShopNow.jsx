@@ -4,6 +4,15 @@ const sections = [
   { img: '/shoes/pexels-craytive-1478442.jpg', reverse: false },
 ];
 
+const scrollToShop = (e) => {
+  e.preventDefault();
+  const el = document.getElementById('shop');
+  if (el) {
+    const top = el.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+};
+
 export default function ShopNow() {
   return (
     <>
@@ -13,7 +22,9 @@ export default function ShopNow() {
             <span className="tag">NEW ARRIVALS</span>
             <h2><span>New Sneakers!</span><br />are here Now!</h2>
             <p>Presenting the best sneakers from around the world — crafted for performance, designed for style.</p>
-            <a href="#shop" className="btn">Shop Now</a>
+            <button onClick={scrollToShop} className="btn">
+              Shop Now &nbsp;<i className="fa-solid fa-arrow-right" />
+            </button>
           </div>
           <div className="shopnow-img">
             <img src={s.img} alt="sneaker lifestyle" loading="lazy" />
@@ -23,3 +34,4 @@ export default function ShopNow() {
     </>
   );
 }
+
